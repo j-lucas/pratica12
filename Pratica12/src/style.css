@@ -86,3 +86,23 @@ form:hover {
     width: 90%;
   }
 }
+
+.excluir {
+  background-color: #dc3545;
+  color: white;
+  margin-top: 10px;
+}
+
+.excluir:hover {
+  background-color: #c82333;
+}
+
+.editar {
+  background-color: #007bff;
+  color: white;
+  margin-top: 10px;
+}
+
+.editar:hover {
+  background-color: #0056b3;
+}
