@@ -10,7 +10,11 @@ if (form) {
         event.preventDefault();
 
         let nome = document.getElementById("nome").value;
-        let preco = document.getElementById("preco").value;
+        let preco = document.getElementById("preco").value.replace(",", ".");
+        if (preco === "" || isNaN(preco)) {
+    alert("Digite um preço válido! Ex: 1,50");
+    return;
+}
 
         if (nome === "" || preco === "") {
             alert("Preencha todos os campos!");
@@ -19,7 +23,7 @@ if (form) {
 
         let produto = {
             nome: nome,
-            preco: preco
+            preco: parseFloat(preco).toFixed(2)
         };
 
         produtos.push(produto);
@@ -44,7 +48,7 @@ function renderizarLista() {
     lista.innerHTML += `
     <div>
         <p>${produto.nome}</p>
-        <p>R$ ${produto.preco}</p>
+        <p>R$ ${parseFloat(produto.preco).toFixed(2).replace(".", ",")}</p>
 
         <button class="editar" onclick="editarProduto(${index})">Editar</button>
         <button class="excluir" onclick="excluirProduto(${index})">Excluir</button>
@@ -73,17 +77,17 @@ window.editarProduto = function(index) {
     let novoNome = prompt("Novo nome do produto:", produtos[index].nome);
     let novoPreco = prompt("Novo preço:", produtos[index].preco);
 
-    if (novoNome === null || novoPreco === null) {
-        return;
-    }
+    if (novoNome === null || novoPreco === null) return;
 
-    if (novoNome === "" || novoPreco === "") {
+    novoPreco = novoPreco.replace(",", ".");
+
+    if (novoNome === "" || novoPreco === "" || isNaN(novoPreco)) {
         alert("Valores inválidos!");
         return;
     }
 
     produtos[index].nome = novoNome;
-    produtos[index].preco = novoPreco;
+    produtos[index].preco = parseFloat(novoPreco).toFixed(2);
 
     localStorage.setItem("produtos", JSON.stringify(produtos));
 
