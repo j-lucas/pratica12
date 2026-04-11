@@ -1,0 +1,359 @@
+/* ============================================================
+   RESET & BASE
+============================================================ */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #1a1a1a;
+  transition: background-color 0.3s;
+}
+
+/* ============================================================
+   NAV
+============================================================ */
+nav {
+  background-color: #333;
+  padding: 15px;
+  text-align: center;
+}
+
+nav a {
+  color: white;
+  margin: 0 15px;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav a:hover {
+  text-decoration: underline;
+}
+
+/* ============================================================
+   MAIN / LAYOUT
+============================================================ */
+main {
+  padding: 30px 15px;
+}
+
+h1, h2 {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+/* ============================================================
+   HOME
+============================================================ */
+.home {
+  max-width: 700px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.subtitulo {
+  color: #555;
+  margin-bottom: 30px;
+  font-size: 1.1rem;
+}
+
+.cards-home {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.card-home {
+  background: white;
+  border-radius: 10px;
+  padding: 30px 20px;
+  width: 260px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s;
+}
+
+.card-home:hover {
+  transform: translateY(-4px);
+}
+
+.card-home .icone {
+  font-size: 2.5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.card-home h3 {
+  margin-bottom: 8px;
+}
+
+.card-home p {
+  color: #666;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.btn-home {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #28a745;
+  color: white;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background-color 0.2s;
+}
+
+.btn-home:hover {
+  background-color: #218838;
+}
+
+/* ============================================================
+   FORMULÁRIO
+============================================================ */
+form {
+  background: white;
+  padding: 25px;
+  max-width: 420px;
+  margin: 0 auto 20px;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.campo {
+  margin-bottom: 15px;
+  display: flex;
+  flex-direction: column;
+}
+
+.campo label {
+  font-size: 0.9rem;
+  font-weight: bold;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 1rem;
+  transition: border-color 0.2s;
+}
+
+input:focus {
+  outline: none;
+  border-color: #28a745;
+}
+
+.erro {
+  color: #dc3545;
+  font-size: 0.82rem;
+  margin-top: 4px;
+  min-height: 18px;
+}
+
+button[type="submit"] {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  margin-top: 5px;
+}
+
+button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+.mensagem-sucesso {
+  text-align: center;
+  color: #155724;
+  background-color: #d4edda;
+  border: 1px solid #c3e6cb;
+  border-radius: 6px;
+  padding: 10px;
+  max-width: 420px;
+  margin: 0 auto;
+  font-size: 0.95rem;
+}
+
+/* ============================================================
+   LISTA DE PRODUTOS
+============================================================ */
+#lista {
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+.card-produto {
+  background: white;
+  padding: 15px;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  box-shadow: 0 0 6px rgba(0,0,0,0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.info-produto {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.info-produto strong {
+  font-size: 1rem;
+}
+
+.info-produto span {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.acoes {
+  display: flex;
+  gap: 8px;
+}
+
+.acoes button {
+  width: auto;
+  padding: 8px 16px;
+  border-radius: 5px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.2s;
+}
+
+.editar {
+  background-color: #007bff;
+}
+
+.editar:hover {
+  background-color: #0056b3;
+}
+
+.excluir {
+  background-color: #dc3545;
+}
+
+.excluir:hover {
+  background-color: #c82333;
+}
+
+.vazio {
+  text-align: center;
+  color: #777;
+  margin-top: 20px;
+}
+
+.vazio a {
+  color: #28a745;
+  font-weight: bold;
+}
+
+/* ============================================================
+   MODAL DE EDIÇÃO
+============================================================ */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.modal-overlay.escondido {
+  display: none;
+}
+
+.modal {
+  background: white;
+  padding: 30px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 400px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+}
+
+.modal h3 {
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+.modal-botoes {
+  display: flex;
+  gap: 10px;
+  margin-top: 5px;
+}
+
+.btn-salvar {
+  flex: 1;
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-salvar:hover {
+  background-color: #218838;
+}
+
+.btn-cancelar {
+  flex: 1;
+  padding: 10px;
+  background-color: #6c757d;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.btn-cancelar:hover {
+  background-color: #545b62;
+}
+
+/* ============================================================
+   RESPONSIVIDADE
+============================================================ */
+@media (max-width: 600px) {
+  form, #lista {
+    width: 95%;
+  }
+
+  .card-produto {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .acoes {
+    width: 100%;
+  }
+
+  .acoes button {
+    flex: 1;
+    text-align: center;
+  }
+}
