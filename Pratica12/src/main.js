@@ -35,26 +35,26 @@ if (form) {
 }
 
 // LISTAGEM
-function renderizarLista() {
-    const lista = document.getElementById("lista");
+function renderizarLista(lista = produtos) {
+  let listaHTML = document.getElementById("lista");
+  listaHTML.innerHTML = "";
 
-    if (!lista) return;
+  lista.forEach((produto, index) => {
+    listaHTML.innerHTML += `
+      <div class="produto-card">
+        <h3>${produto.nome}</h3>
+        <p class="preco">R$ ${parseFloat(produto.preco).toFixed(2).replace(".", ",")}</p>
 
-    lista.innerHTML = "";
-
-    produtos.forEach((produto, index) => {
-    lista.innerHTML += `
-    <div>
-        <p>${produto.nome}</p>
-        <p>R$ ${parseFloat(produto.preco).toFixed(2).replace(".", ",")}</p>
-
-        <button class="editar" onclick="editarProduto(${index})">Editar</button>
-        <button class="excluir" onclick="excluirProduto(${index})">Excluir</button>
-    </div>
-  `;
-});
+        <div class="botoes">
+          <button class="editar" onclick="editarProduto(${index})">Editar</button>
+          <button class="excluir" onclick="excluirProduto(${index})">Excluir</button>
+        </div>
+      </div>
+    `;
+  });
 }
 
+// EXCLUIR
 window.excluirProduto = function(index) {
 
     const confirmar = confirm("Tem certeza que deseja excluir?");
@@ -70,6 +70,7 @@ window.excluirProduto = function(index) {
     renderizarLista();
 }
 
+// EDITAR
 window.editarProduto = function(index) {
 
     let novoNome = prompt("Novo nome do produto:", produtos[index].nome);
@@ -90,6 +91,16 @@ window.editarProduto = function(index) {
     localStorage.setItem("produtos", JSON.stringify(produtos));
 
     renderizarLista();
+}
+
+window.filtrarProdutos = function() {
+  let termo = document.getElementById("busca").value.toLowerCase();
+
+  let listaFiltrada = produtos.filter(p =>
+    p.nome.toLowerCase().includes(termo)
+  );
+
+  renderizarLista(listaFiltrada);
 }
 
 renderizarLista();

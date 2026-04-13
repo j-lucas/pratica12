@@ -140,3 +140,22 @@ form:hover {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
   text-align: center;
 }
+
+#busca {
+  display: block;
+  margin: 20px auto;
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.card {
+  text-decoration: none;
+  color: black;
+  transition: 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.05);
+}
