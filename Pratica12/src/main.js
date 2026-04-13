@@ -3,8 +3,6 @@ let produtos = JSON.parse(localStorage.getItem("produtos")) || [];
 // CADASTRO
 const form = document.getElementById("formProduto");
 
-import './style.css'
-
 if (form) {
     form.addEventListener("submit", function(event) {
         event.preventDefault();
