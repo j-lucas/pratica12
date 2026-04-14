@@ -44,10 +44,6 @@ form {
   box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
-form:hover {
-  transform: scale(1.01);
-}
-
 input {
   width: 100%;
   padding: 10px;
@@ -64,10 +60,12 @@ input {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  transition: 0.2s;
 }
 
-form button:hover {
+button:hover {
   background-color: #218838;
+  transform: scale(1.03);
 }
 
 #lista {
@@ -81,6 +79,12 @@ form button:hover {
   margin-bottom: 10px;
   border-radius: 8px;
   box-shadow: 0 0 5px rgba(0,0,0,0.1);
+}
+
+label {
+  font-weight: bold;
+  margin-bottom: 5px;
+  display: block;
 }
 
                                                             /* BOTÕES */
