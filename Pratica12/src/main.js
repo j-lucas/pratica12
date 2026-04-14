@@ -45,6 +45,11 @@ function renderizarLista(lista = produtos) {
   let listaHTML = document.getElementById("lista");
   listaHTML.innerHTML = "";
 
+  if (lista.length === 0) {
+  listaHTML.innerHTML = "<p>Nenhum produto encontrado.</p>";
+  return;
+}
+
   lista.forEach((produto) => {
   let indexReal = produtos.indexOf(produto);
 
