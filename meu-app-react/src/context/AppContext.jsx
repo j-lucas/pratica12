@@ -15,13 +15,23 @@ export function AppProvider({ children }) {
         const response = await fetch('https://jsonplaceholder.typicode.com/users');
         const data = await response.json();
         
-        // Vamos formatar um pouco os dados para o nosso caso de uso e pegar apenas 5
-        const formattedUsers = data.slice(0, 5).map(user => ({
-          id: user.id.toString(), // Converter para string para padronizar com IDs gerados localmente (UUID seria ideal)
-          name: user.name,
-          email: user.email,
-          role: 'Desenvolvedor(a)', // Campo não existente na API adicionado para enriquecer o visual
-          source: 'api' // Marcador para saber que veio da API
+        // Nomes brasileiros genéricos para substituir os em inglês da API
+        const nomesBrasileiros = [
+          { name: "João Silva", email: "joao.silva@email.com" },
+          { name: "Maria Oliveira", email: "maria.oliveira@email.com" },
+          { name: "Carlos Eduardo", email: "carlos.edu@email.com" },
+          { name: "Ana Costa", email: "ana.costa@email.com" },
+          { name: "Pedro Santos", email: "pedro.santos@email.com" }
+        ];
+
+        // Vamos formatar os dados para o nosso caso de uso, pegando 5 usuários
+        // e substituindo os nomes e emails pelos brasileiros definidos acima
+        const formattedUsers = data.slice(0, 5).map((user, index) => ({
+          id: user.id.toString(),
+          name: nomesBrasileiros[index]?.name || user.name,
+          email: nomesBrasileiros[index]?.email || user.email,
+          role: 'Desenvolvedor(a)',
+          source: 'api'
         }));
         
         setUsers(formattedUsers);
