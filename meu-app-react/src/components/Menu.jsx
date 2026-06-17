@@ -3,6 +3,7 @@ import { NavLink } from 'react-router-dom';
 export default function Menu() {
   return (
     <nav>
+      <div className="sidebar-title">Menu Principal</div>
       <NavLink 
         to="/" 
         className={({ isActive }) => isActive ? "active" : ""}

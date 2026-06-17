@@ -9,13 +9,15 @@ export default function App() {
   return (
     <AppProvider>
       <BrowserRouter>
-        <Menu /> 
-        <div className="container">
-          <Routes>
-            <Route path="/" element={<Inicio />} />
-            <Route path="/cadastro" element={<Cadastro />} />
-            <Route path="/listagem" element={<Listagem />} />
-          </Routes>
+        <div className="app-layout">
+          <Menu /> 
+          <div className="container">
+            <Routes>
+              <Route path="/" element={<Inicio />} />
+              <Route path="/cadastro" element={<Cadastro />} />
+              <Route path="/listagem" element={<Listagem />} />
+            </Routes>
+          </div>
         </div>
       </BrowserRouter>
     </AppProvider>
