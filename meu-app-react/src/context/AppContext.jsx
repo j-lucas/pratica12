@@ -12,26 +12,17 @@ export function AppProvider({ children }) {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/users');
+        // API pública que permite buscar usuários do Brasil nativamente
+        const response = await fetch('https://randomuser.me/api/?results=5&nat=BR');
         const data = await response.json();
         
-        // Nomes brasileiros genéricos para substituir os em inglês da API
-        const nomesBrasileiros = [
-          { name: "João Silva", email: "joao.silva@email.com" },
-          { name: "Maria Oliveira", email: "maria.oliveira@email.com" },
-          { name: "Carlos Eduardo", email: "carlos.edu@email.com" },
-          { name: "Ana Costa", email: "ana.costa@email.com" },
-          { name: "Pedro Santos", email: "pedro.santos@email.com" }
-        ];
-
-        // Vamos formatar os dados para o nosso caso de uso, pegando 5 usuários
-        // e substituindo os nomes e emails pelos brasileiros definidos acima
-        const formattedUsers = data.slice(0, 5).map((user, index) => ({
-          id: user.id.toString(),
-          name: nomesBrasileiros[index]?.name || user.name,
-          email: nomesBrasileiros[index]?.email || user.email,
-          role: 'Desenvolvedor(a)',
-          source: 'api'
+        // Formatando a resposta da API para o padrão do nosso sistema
+        const formattedUsers = data.results.map((user) => ({
+          id: user.login.uuid,
+          name: `${user.name.first} ${user.name.last}`,
+          email: user.email,
+          role: 'Desenvolvedor(a)', // Campo não existente na API adicionado para padronização
+          source: 'api' // Marcador para saber que veio da API
         }));
         
         setUsers(formattedUsers);
