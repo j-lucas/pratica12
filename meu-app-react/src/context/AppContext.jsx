@@ -12,17 +12,17 @@ export function AppProvider({ children }) {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        // API pública que permite buscar usuários do Brasil nativamente
         const response = await fetch('https://randomuser.me/api/?results=5&nat=BR');
         const data = await response.json();
         
-        // Formatando a resposta da API para o padrão do nosso sistema
+        // Formatando a resposta da API incluindo a FOTO do perfil
         const formattedUsers = data.results.map((user) => ({
           id: user.login.uuid,
           name: `${user.name.first} ${user.name.last}`,
           email: user.email,
-          role: 'Desenvolvedor(a)', // Campo não existente na API adicionado para padronização
-          source: 'api' // Marcador para saber que veio da API
+          role: 'Desenvolvedor(a) Sênior', 
+          avatar: user.picture.medium, // Pega a foto real da API
+          source: 'api'
         }));
         
         setUsers(formattedUsers);
@@ -38,12 +38,13 @@ export function AppProvider({ children }) {
 
   // Função para adicionar um novo usuário ao estado global
   const addUser = (newUser) => {
-    // Adiciona o novo usuário no início da lista para visualização imediata
     setUsers((prevUsers) => [
       {
         ...newUser,
-        id: Date.now().toString(), // Simula um ID único
-        source: 'local' // Marcador para saber que foi cadastrado localmente
+        id: Date.now().toString(),
+        // Usa uma API pública gratuita para gerar um avatar com as iniciais do nome cadastrado
+        avatar: `https://ui-avatars.com/api/?name=${encodeURIComponent(newUser.name)}&background=4f46e5&color=fff&size=128`,
+        source: 'local' 
       },
       ...prevUsers
     ]);

@@ -17,9 +17,18 @@ export default function Listagem() {
           ) : (
             users.map((user) => (
               <div key={user.id} className={`item-lista ${user.source === 'local' ? 'novo-item' : ''}`}>
-                <h3>{user.name} {user.source === 'local' && '(Novo)'}</h3>
-                <p><strong>Email:</strong> {user.email}</p>
-                <p><strong>Cargo:</strong> {user.role}</p>
+                <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '0.5rem' }}>
+                  <img 
+                    src={user.avatar} 
+                    alt={`Avatar de ${user.name}`} 
+                    style={{ width: '50px', height: '50px', borderRadius: '50%', objectFit: 'cover', border: '2px solid #334155' }}
+                  />
+                  <div>
+                    <h3 style={{ margin: 0 }}>{user.name} {user.source === 'local' && '(Novo)'}</h3>
+                    <p style={{ margin: 0, fontSize: '0.85rem', color: '#818cf8' }}>{user.role}</p>
+                  </div>
+                </div>
+                <p style={{ marginTop: '0.5rem' }}><strong>Email:</strong> {user.email}</p>
               </div>
             ))
           )}
